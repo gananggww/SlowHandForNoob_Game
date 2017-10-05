@@ -3,6 +3,24 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueDisabled from 'vue-disabled'
+import vuefire from 'vuefire'
+import firebase from 'firebase'
+
+Vue.use(firebase)
+Vue.use(vuefire)
+Vue.use(VueDisabled)
+
+var config = {
+  apiKey: 'AIzaSyD1jr17DUCHShjr1oHGO5dnSflB1ETIMXc',
+  authDomain: 'type-race.firebaseapp.com',
+  databaseURL: 'https://type-race.firebaseio.com',
+  projectId: 'type-race',
+  storageBucket: '',
+  messagingSenderId: '842032352268'
+}
+firebase.initializeApp(config)
+Vue.prototype.$db = firebase.database()
 
 Vue.config.productionTip = false
 

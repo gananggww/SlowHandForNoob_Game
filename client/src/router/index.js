@@ -1,15 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import House from '@/components/House'
+import Player1 from '@/components/Player1'
+import Player2 from '@/components/Player2'
+import Referee from '@/components/Referee'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      component: House
+    }, {
+      path: '/player2',
+      component: Player2
+    }, {
+      path: '/player1',
+      component: Player1
+    }, {
+      path: '/referee',
+      component: Referee
     }
   ]
 })
