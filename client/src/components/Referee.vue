@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
-    <button type="button" @click="getRandomWord">Get Random Word</button>
+    <button type="button" @click="getRandomWord()">Get Random Word</button>
     <p>{{ randomWord }}</p>
-    <button type="button">Mulai</button>
+    <button @click="getStart()" type="button">Mulai</button>
   </div>
 </template>
 
@@ -25,6 +25,10 @@ export default {
     getRandomWord: function () {
       var randomIndex = Math.floor(Math.random() * this.words.length)
       this.randomWord = this.words[randomIndex]
+    },
+    getStart () {
+      this.$db.ref('/users/player1/task').set(this.randomWord)
+      this.$db.ref('/users/player2/task').set(this.randomWord)
     }
   }
 }

@@ -36,7 +36,8 @@ export default {
     goPlayer2 (a) {
       this.$db.ref('/users/player2').set({
         running: true,
-        name: a
+        name: a,
+        task: ''
       })
       localStorage.setItem('token', a)
       this.$router.push('/player2')
@@ -44,7 +45,8 @@ export default {
     goPlayer1 (a) {
       this.$db.ref('/users/player1').set({
         running: true,
-        name: a
+        name: a,
+        task: ''
       })
       localStorage.setItem('token', a)
       if (localStorage.getItem('token') !== null) {
