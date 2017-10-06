@@ -1,30 +1,48 @@
 <template lang="html">
   <div>
-    <p>{{nama[0]['.value']}}</p>
+    <p>Player: {{nama[0]['.value']}}</p>
+    <h3>Your task : {{taskWasit[1]['.value']}}</h3>
+    <h1>{{log}}</h1>
+    <input v-model="taskPlayer" type="text" name="" value="">
+    <button @click="goSubmit(taskPlayer)" type="button" name="button">Submit</button>
   </div>
 
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      taskPlayer: '',
+      token: localStorage.getItem('token'),
+      log: ''
+    }
+  },
   firebase () {
     return {
-      // nama: this.$db.ref('/users/player1')
+      nama: this.$db.ref('/users/player1'),
+      taskWasit: this.$db.ref('/users/wasit')
     }
   },
   methods: {
+    goSubmit () {
+      if (this.taskWasit[1]['.value'] === this.taskPlayer) {
+        console.log(this.taskWasit[1]['.value'])
+        this.$db.ref('/users/player1/task').set(this.taskPlayer)
+        this.log = 'anda Benar'
+      } else {
+        this.log = 'masih salah cuk'
+      }
+    },
     validasi () {
-      console.log('=========>', this.nama[0]['.value'])
-      var waw = this.nama[0]['.value']
-      if (localStorage.getItem('token') === waw) {
-        console.log('masuk')
+      if (this.token === this.nama[0]['.value']) {
+        console.log('masuk if')
         this.$router.push('/')
-        // this.$db.ref('/users/player1/running').set(false)
       }
     }
   },
   mounted () {
-    // this.validasi()
+    this.validasi()
   }
 }
 </script>
