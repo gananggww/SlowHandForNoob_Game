@@ -2,6 +2,7 @@
   <div class="">
     <button type="button" @click="getRandomWord()">Get Random Word</button>
     <p>{{ randomWord }}</p>
+    <h1>The Winner is {{ win[3]['.value']}}</h1>
     <button @click="getStart()" type="button">Mulai</button>
   </div>
 </template>
@@ -19,7 +20,15 @@ export default {
         'teja',
         'ganteng',
         'banget'
-      ]
+      ],
+      winner: ''
+    }
+  },
+  firebase () {
+    return {
+      statusP1: this.$db.ref('/users/player1/'),
+      statusP2: this.$db.ref('/users/player2/'),
+      win: this.$db.ref('/users/wasit')
     }
   },
   methods: {
@@ -39,7 +48,18 @@ export default {
       this.$db.ref('/users/wasit/task').set(this.randomWord)
     },
     counting () {
-
+      if (this.statusP1[2]['.value'] < this.statusP2[2]['.value']) {
+        this.winner = 'P1'
+        this.$db.ref('/users/wasit/winner').set(this.winner)
+      } else {
+        this.winner = 'P2'
+        this.$db.ref('/users/wasit/winner').set(this.winner)
+      }
+    }
+  },
+  computed: {
+    thewinner () {
+      this.counting()
     }
   }
 }
