@@ -6,7 +6,7 @@
     <button @click="goPlayer2(player2Model)" v-disabled= "player2[1]['.value']" type="button" name="button">Player2</button>
   </div>
   <div>
-    <button @click="goWasit()" v-disabled= "wasits[0]['.value']" type="button" name="button">Wasit</button>
+    <button @click="goWasit()" v-disabled= "wasits[1]['.value']" type="button" name="button">Wasit</button>
   </div>
   <div>
     <input v-disabled= "player1[1]['.value']" v-model="player1Model" type="text" name="" value="">
@@ -37,7 +37,8 @@ export default {
       this.$db.ref('/users/player2').set({
         running: true,
         name: a,
-        task: ''
+        task: '',
+        status: 0
       })
       localStorage.setItem('token', a)
       this.$router.push('/player2')
@@ -46,16 +47,18 @@ export default {
       this.$db.ref('/users/player1').set({
         running: true,
         name: a,
-        task: ''
+        task: '',
+        status: 0
       })
       localStorage.setItem('token', a)
-      if (localStorage.getItem('token') !== null) {
-        this.$router.push('/player1')
-      }
+      this.$router.push('/player1')
     },
     goWasit () {
       this.$db.ref('/users/wasit').set({
-        running: true
+        task: '',
+        count: 0,
+        running: true,
+        winner: ''
       })
       this.$router.push('/referee')
     }

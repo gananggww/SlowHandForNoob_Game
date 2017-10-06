@@ -12,12 +12,12 @@ Vue.use(vuefire)
 Vue.use(VueDisabled)
 
 var config = {
-  apiKey: 'AIzaSyA_wydnT36EAB4oVOSSbi7z1gwXg-Axgco',
-  authDomain: 'type-race-b28c3.firebaseapp.com',
-  databaseURL: 'https://type-race-b28c3.firebaseio.com',
-  projectId: 'type-race-b28c3',
-  storageBucket: 'type-race-b28c3.appspot.com',
-  messagingSenderId: '697068469287'
+  apiKey: 'AIzaSyD1jr17DUCHShjr1oHGO5dnSflB1ETIMXc',
+  authDomain: 'type-race.firebaseapp.com',
+  databaseURL: 'https://type-race.firebaseio.com',
+  projectId: 'type-race',
+  storageBucket: 'type-race.appspot.com',
+  messagingSenderId: '842032352268'
 }
 firebase.initializeApp(config)
 Vue.prototype.$db = firebase.database()

@@ -21,6 +21,7 @@ export default {
   firebase () {
     return {
       nama: this.$db.ref('/users/player1'),
+      nama2: this.$db.ref('/users/player2'),
       taskWasit: this.$db.ref('/users/wasit')
     }
   },
@@ -32,19 +33,10 @@ export default {
         this.log = 'anda Benar'
         this.$db.ref('/users/player1/status').set(this.taskWasit[0]['.value'])
       } else {
-        this.log = 'masih salah cuk'
+        this.log = 'masih salah'
         this.$db.ref('/users/player1/status').set('Slow hand')
       }
-    },
-    validasi () {
-      if (this.token === this.nama[0]['.value']) {
-        console.log('masuk if')
-        this.$router.push('/')
-      }
     }
-  },
-  mounted () {
-    this.validasi()
   }
 }
 </script>

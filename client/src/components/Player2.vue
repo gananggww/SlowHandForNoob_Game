@@ -30,7 +30,7 @@ export default {
         this.log = 'anda Benar'
         this.$db.ref('/users/player2/status').set(this.taskWasit[0]['.value'])
       } else {
-        this.log = 'masih salah cuk'
+        this.log = 'masih salah'
         this.$db.ref('/users/player2/status').set('Slow hand')
       }
     }
