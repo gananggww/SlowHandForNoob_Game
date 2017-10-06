@@ -33,7 +33,9 @@ export default {
       }, 1000)
     },
     insertTask () {
-      this.$db.ref('/users/wasit/count').set(this.count += 1)
+      if (this.count <= 29) {
+        this.$db.ref('/users/wasit/count').set(this.count += 1)
+      }
       this.$db.ref('/users/wasit/task').set(this.randomWord)
     },
     counting () {
